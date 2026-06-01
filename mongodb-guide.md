@@ -1,4 +1,4 @@
-# 🍃 Introduction to MongoDB
+# Introduction to MongoDB
 
 > A beginner-friendly guide to getting started with MongoDB — from core concepts to querying, validation, and data modelling.
 
@@ -42,7 +42,7 @@ Key characteristics:
 
 ## Advantages and Disadvantages
 
-### ✅ Advantages
+###  Advantages
 
 - **Document Oriented Storage** — data is stored naturally as JSON-like objects, making it intuitive for developers
 - **Easy Horizontal Scaling** — MongoDB can scale out across many servers (sharding) with minimal configuration
@@ -52,7 +52,7 @@ Key characteristics:
   - Free to use at scale — no per-seat licensing fees
 - **Flexible Schema** — documents in the same collection can have different fields, ideal for evolving data models
 
-### ❌ Disadvantages
+###  Disadvantages
 
 - **High Memory Usage** — documents can duplicate data (denormalisation), leading to larger storage footprints
 - **Can be Inconsistent** — by default, MongoDB favours availability over strict consistency (eventual consistency)
@@ -64,18 +64,18 @@ Key characteristics:
 
 MongoDB excels in scenarios where data is varied, fast-moving, or document-shaped:
 
-- 📱 **Social Media posts/data** — user-generated content with varying structure
-- 🔌 **API data (JSON)** — store API responses directly without transformation
-- 📲 **Mobile App Backends** — flexible schema suits rapidly changing mobile apps
-- ⚡ **Caching** — e.g. shopping cart data that changes frequently
-- 🛍️ **Product catalogues** — products with different attributes per category
-- 🎞️ **Media files/data** — metadata for images, videos, audio
-- 📝 **CMS systems** — content management with varied page structures
-- 👥 **CRM systems** — customer records with heavy text and varied contact data
-- 🌡️ **IoT and Sensor data** — high-volume, time-series data from devices
-- 📊 **Logs and monitoring data** — application and server event streams
-- 🎮 **Gaming data** — player profiles, game state, leaderboards
-- 💬 **Chat systems/apps** — messages, threads, user metadata
+-  **Social Media posts/data** — user-generated content with varying structure
+-  **API data (JSON)** — store API responses directly without transformation
+-  **Mobile App Backends** — flexible schema suits rapidly changing mobile apps
+-  **Caching** — e.g. shopping cart data that changes frequently
+-  **Product catalogues** — products with different attributes per category
+-  **Media files/data** — metadata for images, videos, audio
+-  **CMS systems** — content management with varied page structures
+-  **CRM systems** — customer records with heavy text and varied contact data
+-  **IoT and Sensor data** — high-volume, time-series data from devices
+-  **Logs and monitoring data** — application and server event streams
+- **Gaming data** — player profiles, game state, leaderboards
+-  **Chat systems/apps** — messages, threads, user metadata
 - ...and much more
 
 ---
@@ -98,7 +98,7 @@ mongodb://localhost:27017
 
 You should now see your local MongoDB server with any existing databases listed in the left-hand panel.
 
-> 💡 **Tip:** If you haven't installed MongoDB locally, download it from [mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
+> If you haven't installed MongoDB locally, download it from [mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
 
 ---
 
@@ -145,26 +145,11 @@ Expected output:
 ### Insert a Single Document
 
 ```mongosh
-db.institute.insertOne({
-    name: "Yas Akilakulasingam",
-    course: "Data Engineering",
-    education: {
-        masters: "MSc Financial Mathematics with Data Science, University of Bath (2025-2026)",
-        bachelors: "BSc Mathematical Sciences, Upper Second Class Honours, Gold Scholar, University of Bath (2021-2025)"
-    },
-    professional_experience: [
-        { role: "Business Planning Analyst", company: "Bank of New York", duration: "Jul 2023 - Aug 2024" },
-        { role: "Data Analytics & Business Intelligence Intern", company: "Mamalla Group of Hotels", duration: "Jun 2023 - Jul 2023" }
-    ],
-    skills: ["Python", "RStudio", "SQL", "Power BI", "Excel", "Machine Learning", "MongoDB"],
-    projects: [
-        "ML Credit Risk Scoring (XGBoost, SHAP, LIME)",
-        "Volatility Modelling with Heston & Dupire models",
-        "Neural Networks for Image Classification (CNN, LSTM, MLP)"
-    ],
-    dissertation: "Machine learning-enhanced Monte Carlo frameworks for complex derivative pricing",
-    awards: ["Masters Bursary", "Gold Scholar"],
-    languages: ["English", "Tamil"]
+db.institute.insertOne({ 
+  name: "Yas Akilakulasingam", 
+  course: "Data Engineering", education: { masters: "MSc Financial Mathematics with Data Science, University of Bath (2025-2026)", bachelors: "BSc Mathematical Sciences, Upper Second Class Honours, Gold Scholar, University of Bath (2021-2025)" }, 
+  skills: ["Python", "RStudio", "SQL", "Power BI", "Excel", "Machine Learning", "MongoDB"], 
+  languages: ["English", "Tamil"]
 })
 ```
 
@@ -200,7 +185,7 @@ Expected output:
 }
 ```
 
-> 💡 **Bonus:** The legacy `insert()` command also exists and can accept either a single document or an array (like `insertOne` and `insertMany` combined). However, it is **deprecated** as of MongoDB 5.0 — prefer `insertOne` or `insertMany` instead.
+> **Bonus:** The legacy `insert()` command also exists and can accept either a single document or an array (like `insertOne` and `insertMany` combined). However, it is **deprecated** as of MongoDB 5.0 — prefer `insertOne` or `insertMany` instead.
 
 ---
 
@@ -239,7 +224,7 @@ db.createCollection("students", {
 })
 ```
 
-### ❌ Invalid Entry
+###  Invalid Entry
 
 Attempting to insert a document that violates the validation rules:
 
@@ -273,7 +258,7 @@ Additional information: {
 
 > The document was **rejected** because `age: 14` is below the minimum of 16.
 
-### ✅ Valid Entry
+###  Valid Entry
 
 ```mongosh
 db.students.insertOne({
@@ -412,7 +397,7 @@ Delete **multiple** documents matching a filter:
 db.films.deleteMany({ genre: "Science Fiction" })
 ```
 
-> ⚠️ **Warning:** `deleteMany({})` with an empty filter will delete **all** documents in the collection. Use with caution!
+>  **Warning:** `deleteMany({})` with an empty filter will delete **all** documents in the collection.
 
 ---
 
@@ -449,14 +434,14 @@ Embedding means storing related data **directly inside** a parent document as a 
 
 **Advantages:**
 
-- ✅ Fast reads — single query returns everything
-- ✅ Atomic writes — the whole document updates in one operation
-- ✅ Simpler application code
+-  Fast reads — single query returns everything
+-  Atomic writes — the whole document updates in one operation
+-  Simpler application code
 
 **Disadvantages:**
 
-- ❌ Document size limit of 16MB in MongoDB
-- ❌ Data duplication if the same sub-document is shared across many parents
+-  Document size limit of 16MB in MongoDB
+-  Data duplication if the same sub-document is shared across many parents
 
 ---
 
@@ -494,14 +479,14 @@ Referencing means storing related data in **separate collections** and linking t
 
 **Advantages:**
 
-- ✅ No data duplication — the course record exists once
-- ✅ Easier to update shared data
-- ✅ Avoids hitting the 16MB document size limit
+- No data duplication — the course record exists once
+-  Easier to update shared data
+-  Avoids hitting the 16MB document size limit
 
 **Disadvantages:**
 
-- ❌ Requires multiple queries or a `$lookup` aggregation to join data
-- ❌ Slightly more complex application code
+-  Requires multiple queries or a `$lookup` aggregation to join data
+-  Slightly more complex application code
 
 ---
 
@@ -515,8 +500,5 @@ Referencing means storing related data in **separate collections** and linking t
 | **Best for** | One-to-few relationships | One-to-many / many-to-many |
 | **Performance** | Faster reads | Can be slower (multiple queries) |
 
-> 💡 **Rule of thumb:** If you find yourself always querying two collections together, consider embedding. If the related data is shared or grows large, use referencing.
+>  **Rule of thumb:** If you find yourself always querying two collections together, consider embedding. If the related data is shared or grows large, use referencing.
 
----
-
-*Guide written as part of the Sparta Education Data Engineering programme.*
