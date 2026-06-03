@@ -1,4 +1,4 @@
-# Cloud Computing: A Professional Guide
+# Cloud Computing
 
 > A comprehensive introduction to cloud computing, covering core concepts, deployment models, service types, major providers, and career certifications for data professionals.
 
